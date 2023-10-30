@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Centrust\NovaLocalization\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class NovaLocalizationCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'nova-localization';
 
     public $description = 'My command';
 
