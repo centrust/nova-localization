@@ -50,11 +50,11 @@ class NovaLocalizationServiceProvider extends PackageServiceProvider
 
             $language = app()->getLocale() == 'ar' ? 'en' : 'ar';
 
-            $menu->append(MenuItem::externalLink(app()->getLocale() == 'ar' ? 'English' : 'عربي', '/change-language/' . $language));
+            $menu->append(MenuItem::externalLink(app()->getLocale() == 'ar' ? 'English' : 'عربي', '/change-language/' . $language .'/' . $request->user()->id));
 
             return $menu;
         });
 
-        Route::get('change-language/{language}', [\Centrust\NovaLocalization\Http\LocalizationController::class, 'changeLanguage']);
+        Route::get('change-language/{language}/{id}', [\Centrust\NovaLocalization\Http\LocalizationController::class, 'changeLanguage']);
     }
 }
