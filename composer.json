@@ -19,7 +19,10 @@
         "php": "^8.1",
         "spatie/laravel-package-tools": "^1.14.0",
         "illuminate/contracts": "^10.0",
-        "outl1ne/nova-inline-text-field": "dev-salah"
+        "outl1ne/nova-inline-text-field": "dev-salah",
+        "spatie/nova-translatable": "^3.1",
+        "laravel/nova": "^4.0"
+
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -89,6 +92,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/Elshaden/nova-inline-text-field.git"
+        },
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
         }
     ],
     "minimum-stability": "dev",
