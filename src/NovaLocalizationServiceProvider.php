@@ -3,6 +3,7 @@
 namespace Centrust\NovaLocalization;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Menu\Menu;
 use Laravel\Nova\Menu\MenuItem;
@@ -53,5 +54,7 @@ class NovaLocalizationServiceProvider extends PackageServiceProvider
 
             return $menu;
         });
+
+        Route::get('change-language/{language}', [\Centrust\NovaLocalization\Http\LocalizationController::class, 'changeLanguage']);
     }
 }
