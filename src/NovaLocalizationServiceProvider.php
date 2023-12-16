@@ -50,7 +50,7 @@ class NovaLocalizationServiceProvider extends PackageServiceProvider
 
             $language = app()->getLocale() == 'ar' ? 'en' : 'ar';
 
-            $menu->prepend(MenuItem::externalLink(app()->getLocale() == 'ar' ? 'English' : 'عربي', '/change-language/' . $language));
+            $menu->append(MenuItem::externalLink(app()->getLocale() == 'ar' ? 'English' : 'عربي', '/change-language/' . $language));
 
             return $menu;
         });
