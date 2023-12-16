@@ -14,7 +14,7 @@ class LocalizationController extends Controller
     {
         $User = $request->user();
 
-        $User::update( ['locale' => $request->language]);
+        $User->update( ['locale' => $request->language]);
 
         return redirect()->to(config('app.url').config('nova.path'));
 
