@@ -12,7 +12,7 @@ class LocalizationController extends Controller
 
     public function changeLanguage(Request $request)
     {
-        $User = $request->user();
+        $User = \App\Models\User::find($request->user()->id);
 
         $User->update( ['locale' => $request->language]);
 
