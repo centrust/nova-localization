@@ -24,7 +24,7 @@ class NovaLocalizationServiceProvider extends PackageServiceProvider
             ->name('nova-localization')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_nova_localization_table')
+            ->hasMigrations(['create_nova_localization_table','add_locale_to_users_table'])
             ->hasCommand(NovaLocalizationCommand::class);
     }
 
