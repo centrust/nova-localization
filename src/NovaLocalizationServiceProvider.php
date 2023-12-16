@@ -39,7 +39,7 @@ class NovaLocalizationServiceProvider extends PackageServiceProvider
                 $event->request->setLocale($Locale);
             }else{
                 if(auth()->check()) {
-                      auth()->user()->update(['locale' => app()->getLocale()]);
+                    \App\Models\User::find(auth()->id())->update(['locale' => app()->getLocale()]);
                 }
             }
             if (app()->getLocale() == 'ar') {
