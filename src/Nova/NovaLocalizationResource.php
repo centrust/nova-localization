@@ -19,7 +19,7 @@ class NovaLocalizationResource extends Resource
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\ECentrust\NovaLocalization\Models\Localizatio>
+     * @var class-string<\Centrust\NovaLocalization\Models\Localization>
      */
     public static $model = Localization::class;
 
@@ -79,7 +79,7 @@ class NovaLocalizationResource extends Resource
             })->onlyOnIndex(),
             Text::make('Group')->sortable()->readonly(),
 
-           new Panel(_tran('Localizations'), $this->LocalizationFileds()),
+         new Panel(_tran('Localizations'), $this->LocalizationFileds()),
 
         ];
     }
