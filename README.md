@@ -5,15 +5,21 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/centrust/nova-localization/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/centrust/nova-localization/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/centrust/nova-localization.svg?style=flat-square)](https://packagist.org/packages/centrust/nova-localization)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
-## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/nova-localization.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/nova-localization)
+This package is tailored for developers using Laravel Nova who need an easy, reliable solution for managing their application's localization.
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+## Features
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+- **Inline Translation**: Automatically translates your application's text from the dashboard.
+- **Flexibility**: Designed to work seamlessly with Laravel's built-in localization functionality.
+- **Easiness**: An easy configuration process ensures you can start using instantly.
+
+
+>Currently Only Supports English and Arabic languages.
+You are free to fork and add your own language support.
+
+
 
 ## Installation
 
@@ -40,16 +46,49 @@ This is the contents of the published config file:
 
 ```php
 return [
+  /** 
+     * If set to true, this will enable caching for localization. The actual value for this translation is taken from the server's cache.
+     * If the LOCALIZATION_ENABLE_CACHE environment variable does not exist, the default value will be false.
+     * This is useful for improving the application's performance by caching localizations,
+     * but it might delay the appearance of any changes made to localization files until the cache is refreshed.
+     **/
+    'localization_enable_cache' => env('LOCALIZATION_ENABLE_CACHE', false),
+    
+    /**
+     * This URL is for loading the Arabic font from Google Fonts.
+     * This font is needed for Arabic language support in your application.
+     **/
+    'ar_google_font_url'=> 'https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@700&display=swap',
+
+
+    /**
+     * This is the path to the CSS file that contains the Arabic font family.   
+     * example : 'css/rtl-ar.css'
+     * The file must be in the public folder.
+     * This font is needed for Arabic language support in your application.
+     */
+    'ar_font_family_css'=> 'css/rtl-ar.css',
+
 ];
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="nova-localization-views"
-```
-
 ## Usage
+After running Migration,  you need to add 'locale' column to your User Model  fillable array.
+
+
+To translate any text in your application, you can use the following code:
+```php
+
+_tran('Hello World!');
+
+```
+> Note Don't use ',' comma in the text to be translated. as this will make it look like an array
+
+
+## How It works
+When you use the _tran() function, the package will search for the translation in the database,
+if it does not find it, it will search for it in the Laravel language files.
+If it does not find it in the language files, it will save it in the database and return it to you.
 
 ```php
 $novaLocalization = new Centrust\NovaLocalization();

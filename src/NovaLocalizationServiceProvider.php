@@ -43,6 +43,9 @@ class NovaLocalizationServiceProvider extends PackageServiceProvider
                 }
             }
             if (app()->getLocale() == 'ar') {
+                Nova::style('custom-fields-css', public_path(config('nova-localization.ar_font_family_css','css/rtl-ar.css')));
+                Nova::style('custom-fields-css', config('nova-localization.ar_google_font_url','https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@700&display=swap'));
+
                 Nova::enableRTL();
             }
         });
