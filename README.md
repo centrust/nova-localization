@@ -1,4 +1,4 @@
-# Laravel Nova Localization Package
+# Laravel Nova Inline Arabic Localization (Translation)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/centrust/nova-localization.svg?style=flat-square)](https://packagist.org/packages/centrust/nova-localization)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/centrust/nova-localization/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/centrust/nova-localization/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -7,7 +7,9 @@
 
 
 
-This package is tailored for developers using Laravel Nova who need an easy, reliable solution for managing their application's localization.
+This package is tailored for developers using Laravel Nova who need an easy, reliable solution for managing their application's translations.
+### Currently Only Supports English and Arabic languages.You are free to fork and add your own language support.
+
 
 ## Features
 
@@ -16,9 +18,20 @@ This package is tailored for developers using Laravel Nova who need an easy, rel
 - **Easiness**: An easy configuration process ensures you can start using instantly.
 
 
->Currently Only Supports English and Arabic languages.
-You are free to fork and add your own language support.
 
+
+## Example Use
+ in Nova Resource
+```php
+  Text::make(_tran('Name'), 'name'),
+  Text::make(_tran('Description'), 'description')
+```
+Result
+ - ِِArabic  الأسم
+ - English  Name
+
+- ِِArabic  التعريف
+- English  Description
 
 
 ## Installation
@@ -35,6 +48,8 @@ You can publish and run the migrations with:
 php artisan vendor:publish --tag="nova-localization-migrations"
 php artisan migrate
 ```
+
+> Once you Migrate the table, you need to add 'locale' column to your User Model  fillable array.
 
 You can publish the config file with:
 
@@ -73,27 +88,38 @@ return [
 ```
 
 ## Usage
-After running Migration,  you need to add 'locale' column to your User Model  fillable array.
 
-
-To translate any text in your application, you can use the following code:
+#### To translate any text in your application, you can use the _tran() helepr function:
 ```php
 
-_tran('Hello World!');
+_tran('This is a label');
 
 ```
-> Note Don't use ',' comma in the text to be translated. as this will make it look like an array
+
+```
+
+To show the Localization Resource in the menu, (I havent figured out how to show it automatically yet)
+but you can add it manually by Creating your own normal resource and extend this package resource
+```php
+
+use Centrust\NovaLocalization\Nova\NovaLocalizationResource;
+
+class Localization extends NovaLocalizationResource
+{
+
+}
+
+````
+
+
+
 
 
 ## How It works
-When you use the _tran() function, the package will search for the translation in the database,
-if it does not find it, it will search for it in the Laravel language files.
-If it does not find it in the language files, it will save it in the database and return it to you.
-
-```php
-$novaLocalization = new Centrust\NovaLocalization();
-echo $novaLocalization->echoPhrase('Hello, Centrust!');
-```
+- When you use the _tran() function, which is a global helper function, available in all your application's files,
+- the package will search for the translation in the database,
+- if it does not find it, it will search for it in the Laravel language files.
+- If it does not find it in the language files, it will save it in the database and return it to you.
 
 ## Testing
 

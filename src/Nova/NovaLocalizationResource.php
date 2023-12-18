@@ -16,6 +16,8 @@ use Outl1ne\NovaInlineTextField\InlineText;
 
 class NovaLocalizationResource extends Resource
 {
+
+    public static $clickAction = 'ignore';
     /**
      * The model the resource corresponds to.
      *
