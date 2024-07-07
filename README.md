@@ -87,6 +87,16 @@ return [
 ];
 ```
 
+Example for the CSS file that contains the Arabic font family.
+```css
+
+body {
+    font-family: 'Scheherazade New', 'Nunito Sans', 'Nunito', sans-serif;
+}
+
+```
+
+
 ## Usage
 
 #### To translate any text in your application, you can use the _tran() helepr function:
@@ -96,10 +106,11 @@ _tran('This is a label');
 
 ```
 
-```
+
 
 To show the Localization Resource in the menu, (I havent figured out how to show it automatically yet)
 but you can add it manually by Creating your own normal resource and extend this package resource
+
 ```php
 
 use Centrust\NovaLocalization\Nova\NovaLocalizationResource;
@@ -111,7 +122,22 @@ class Localization extends NovaLocalizationResource
 
 ````
 
+To have the user switch languages in the User menu, you can add this to your User Menu in the Novaserviceprovider.php
 
+```php
+  Nova::userMenu(function (Request $request, Menu $menu) {
+
+            $language = app()->getLocale() == 'ar' ? 'en' : 'ar';
+
+            $menu->append(MenuItem::externalLink(app()->getLocale() == 'ar' ? 'English' : 'عربي', '/change-language/' . $language . '/' . $request->user()->id));
+
+
+            return $menu;
+        });
+
+
+```
+This part will switch the locale and to RTL if 'Arabic' is selected
 
 
 
