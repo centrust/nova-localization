@@ -18,7 +18,7 @@
     "require": {
         "php": "^8.1",
         "spatie/laravel-package-tools": "^1.14.0",
-        "illuminate/contracts": "^10.0",
+        "illuminate/contracts": "^10.0|^11.0",
         "outl1ne/nova-inline-text-field": "dev-salah",
         "spatie/nova-translatable": "^3.1",
         "laravel/nova": "^4.0"
